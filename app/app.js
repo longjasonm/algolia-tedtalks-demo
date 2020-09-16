@@ -166,7 +166,7 @@ searchTalks.addWidgets([
       </div>
       <div class="modal-body">
       <div class="row pb-3">
-        <div class="col-sm-4 align-self-center"><a href="https://www.ted.com/talks/{{slug}}"></a><img src="{{image_url}}" alt="{{name}} Video Thumbnail" class="img-fluid" /></a></div>
+        <div class="col-sm-4 align-self-center"><a href="https://www.ted.com/talks/{{slug}}"><img src="{{image_url}}" alt="{{name}} Video Thumbnail" class="img-fluid" /></a></div>
         <div class="col-sm-8">
       <p class="hit-description">{{#helpers.highlight}}{"attribute" : "description"}{{/helpers.highlight}}</p>
       <small>Views: {{viewed_count}}</small>
