@@ -1,4 +1,14 @@
-'use strict';
+import algoliasearch from 'algoliasearch';
+import instantsearch from 'instantsearch.js';
+import {
+  searchBox,
+  configure,
+  clearRefinements,
+  sortBy,
+  refinementList,
+  infiniteHits,
+
+} from 'instantsearch.js/es/widgets'
 
 const searchClient = algoliasearch('L1292YARWK', '71cf36ea528d375a21804d918d0c5ed4');
 
@@ -8,7 +18,7 @@ const searchTalks = instantsearch({
 });
 
 searchTalks.addWidgets([
-  instantsearch.widgets.searchBox({
+  searchBox({
     container: "#searchbox",
     cssClasses:{
       input: 'form-control'
@@ -18,12 +28,12 @@ searchTalks.addWidgets([
     showSubmit: false
   }),
 
-  instantsearch.widgets.configure({
+  configure({
     hitsPerPage: 24,
     enablePersonalization: true,
   }),
 
-  instantsearch.widgets.clearRefinements({
+  clearRefinements({
     container: '#clear-refinements',
     cssClasses: {
       button: 'btn btn-secondary btn-sm btn-block my-2',
@@ -34,7 +44,7 @@ searchTalks.addWidgets([
     },
   }),
 
-  instantsearch.widgets.sortBy({
+  sortBy({
     container: '#sort-by',
     items: [
       { label: 'Our Picks', value: 'TEDTalks_talks' },
@@ -45,7 +55,7 @@ searchTalks.addWidgets([
     }
   }),
 
-  instantsearch.widgets.refinementList({
+  refinementList({
     container: '#refinements-tags',
     attribute: 'tags',
     cssClasses: {
@@ -53,7 +63,7 @@ searchTalks.addWidgets([
     }
   }),
 
-  instantsearch.widgets.refinementList({
+  refinementList({
     container: '#refinements-event_name',
     attribute: 'event_name',
     cssClasses: {
@@ -61,7 +71,7 @@ searchTalks.addWidgets([
     }
   }),
 
-  instantsearch.widgets.refinementList({
+  refinementList({
     container: '#refinements-languages',
     attribute: 'languages',
     cssClasses: {
@@ -69,7 +79,7 @@ searchTalks.addWidgets([
     }
   }),
 
-  instantsearch.widgets.refinementList({
+  refinementList({
     container: '#refinements-speakers',
     attribute: 'speakers',
     cssClasses: {
@@ -77,7 +87,7 @@ searchTalks.addWidgets([
     }
   }),
 
-  instantsearch.widgets.refinementList({
+  refinementList({
     container: '#refinements-duration_range',
     attribute: 'duration_range',
     cssClasses: {
@@ -86,7 +96,7 @@ searchTalks.addWidgets([
   }),
 
   // Decided to do infiniteHits widget instead.
-/*   instantsearch.widgets.pagination({
+/*   pagination({
     container: '#pagination',
     cssClasses: {
       root: 'd-flex justify-content-center mb-5',
@@ -102,7 +112,7 @@ searchTalks.addWidgets([
 
   // TODO: Add moment.js for relative date filtering
 
-  instantsearch.widgets.infiniteHits({
+  infiniteHits({
     container: "#hits",
     cssClasses: {
       item: 'col-sm-4 col-md-3 col-lg-2 mb-4',

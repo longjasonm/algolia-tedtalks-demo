@@ -9,4 +9,3 @@ Demonstration of Algolia using TEDTalks data (speakers, talks, and playlists).
 3. Create `index.js` to initialize Algolia Instantsearch and required widgets for UI.
 4. Create `index.html` to provide UI scaffolding for displaying the results of Instantsearch.
 5. Project cleanup and documentation.
-
