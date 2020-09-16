@@ -1,15 +1,15 @@
 'use strict';
 // Import Algolia
-const algoliasearch = require('algoliasearch');
-// Algolia API Credentials -- Stored in config.js. See config-sample.json for format; obviously these are hidden for my safety!
-const apiConfig = require('./config.json');
+import algoliasearch from 'algoliasearch';
+// Algolia API Credentials -- Stored in config.json. See config-sample.json for format; obviously these are hidden for my safety!
+import { adminAPI } from './config.json';
 // Local files used for data
-const talks = require('../data/tedtalks/talks.json');
-const speakers = require('../data/tedtalks/speakers.json');
-const playlists = require('../data/tedtalks/playlists.json');
+import talks from '../data/tedtalks/talks.json';
+import speakers from '../data/tedtalks/speakers.json';
+import playlists from '../data/tedtalks/playlists.json';
 
 // Initialize Algolia API
-const client = algoliasearch('L1292YARWK', apiConfig.AdminAPIKey);
+const client = algoliasearch('L1292YARWK', adminAPI);
 
 // Import records
 client.initIndex('TEDTalks_talks').saveObjects(talks);
