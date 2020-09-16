@@ -1,0 +1,22 @@
+{
+  "name": "algolia-tedtalks-demo",
+  "version": "1.0.0",
+  "description": "Algolia demo using TEDTalks data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/longjasonm/algolia-tedtalks-demo.git"
+  },
+  "author": "Jason Long",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/longjasonm/algolia-tedtalks-demo/issues"
+  },
+  "homepage": "https://github.com/longjasonm/algolia-tedtalks-demo#readme",
+  "dependencies": {
+    "algoliasearch": "^4.5.1"
+  }
+}
