@@ -18,6 +18,9 @@
   "homepage": "https://github.com/longjasonm/algolia-tedtalks-demo#readme",
   "dependencies": {
     "algoliasearch": "^4.5.1",
-    "instantsearch.js": "^4.8.1"
+    "instantsearch.js": "^4.8.1",
+    "isotope-layout": "^3.0.6",
+    "moment": "^2.28.0",
+    "momentjs": "^2.0.0"
   }
 }

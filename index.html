@@ -5,33 +5,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEDTalks Catalog by Algolia</title>
-    <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.0.0/dist/algoliasearch-lite.umd.js"
-        integrity="sha256-MfeKq2Aw9VAkaE9Caes2NOxQf6vUa8Av0JqcUXUGkd0=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.0.0/dist/instantsearch.production.min.js"
-        integrity="sha256-6S7q0JJs/Kx4kb/fv0oMjS855QTz5Rc2hh9AkIUjUsk=" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css"
+        integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="app/app.css" crossorigin="anonymous">
 </head>
 
 <body>
-    <div class="ais-InstantSearch">
-        <h1>InstantSearch.js e-commerce demo</h1>
-
-        <div class="left-panel">
-          <div id="clear-refinements"></div>
-
-          <h2>Brands</h2>
-          <div id="brand-list"></div>
+    <header>
+        <div class="row no-gutters">
+            <div class="col-sm-1"> <img src="https://pi.tedcdn.com/r/pl.tedcdn.com/social/ted-logo-fb.png?v=wAff13s?" class="img-fluid">
+                </div>
+            <div class="col-sm-11 align-self-center"><h1>TEDTalks Catalog Search</h1></div>
         </div>
-
-        <div class="right-panel">
-          <div id="searchbox" class="ais-SearchBox"></div>
-          <div id="hits"></div>
-          <div id="pagination"></div>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="ais-InstantSearch">
+                    <div id="searchbox" class="ais-SearchBox my-4"></div>
+                    <div class="row">
+                        <div class="left-panel col-sm-4 col-md-3 col-lg-2">
+                            <div id="sort-container" class="mb-4"><h6>Sort results by:</h6>
+                                <div id="sort-by"></div>
+                            </div>
+                            <div id="clear-refinements" class=""></div>
+                            <div id="refinements-container">
+                                <div class="refinements mb-2 card">
+                                    <div class="card-header">
+                                        <div id="refinements-title-tags" class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#refinements-tags-wrap" aria-expanded="false"
+                                            aria-controls="refinements-tags-wrap">Topics</div>
+                                    </div>
+                                    <div id="refinements-tags-wrap" class="collapse"
+                                        aria-labelledby="refinements-title-tags" data-parent="#refinements-container">
+                                        <div id="refinements-tags" class="card-body"></div>
+                                    </div>
+                                </div>
+                                <div class="refinements my-2 card">
+                                    <div class="card-header">
+                                        <div id="refinements-title-event_name" class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#refinements-event_name-wrap" aria-expanded="false"
+                                            aria-controls="refinements-event_name-wrap">Event Name</div>
+                                    </div>
+                                    <div id="refinements-event_name-wrap" class="collapse"
+                                        aria-labelledby="refinements-title-event_name" data-parent="#refinements-container">
+                                        <div id="refinements-event_name" class="card-body"></div>
+                                    </div>
+                                </div>
+                                <div class="refinements my-2 card">
+                                    <div class="card-header">
+                                        <div id="refinements-title-languages" class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#refinements-languages-wrap" aria-expanded="false"
+                                            aria-controls="refinements-languages-wrap">Languages</div>
+                                    </div>
+                                    <div id="refinements-languages-wrap" class="collapse"
+                                        aria-labelledby="refinements-title-languages" data-parent="#refinements-container">
+                                        <div id="refinements-languages" class="card-body"></div>
+                                    </div>
+                                </div>
+                                <div class="refinements my-2 card">
+                                    <div class="card-header">
+                                        <div id="refinements-title-speakers" class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#refinements-speakers-wrap" aria-expanded="false"
+                                            aria-controls="refinements-speakers-wrap">Speaker(s)</div>
+                                    </div>
+                                    <div id="refinements-speakers-wrap" class="collapse"
+                                        aria-labelledby="refinements-title-speakers" data-parent="#refinements-container">
+                                        <div id="refinements-speakers" class="card-body"></div>
+                                    </div>
+                                </div>
+                                <div class="refinements my-2 card">
+                                    <div class="card-header">
+                                        <div id="refinements-title-duration_range" class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#refinements-duration_range-wrap" aria-expanded="false"
+                                            aria-controls="refinements-duration_range-wrap">Duration</div>
+                                    </div>
+                                    <div id="refinements-duration_range-wrap" class="collapse"
+                                        aria-labelledby="refinements-title-duration_range" data-parent="#refinements-container">
+                                        <div id="refinements-duration_range" class="card-body"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right-panel col-sm-9">
+                            <div id="hits"></div>
+                            <div id="pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
+
 </body>
-<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.0.0/dist/algoliasearch-lite.umd.js"
+    integrity="sha256-MfeKq2Aw9VAkaE9Caes2NOxQf6vUa8Av0JqcUXUGkd0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.0.0/dist/instantsearch.production.min.js"
+    integrity="sha256-6S7q0JJs/Kx4kb/fv0oMjS855QTz5Rc2hh9AkIUjUsk=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 <script type="module" src="./app/app.js"></script>
 
 </html>
