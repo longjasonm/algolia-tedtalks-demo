@@ -7,7 +7,8 @@ import {
   sortBy,
   refinementList,
   infiniteHits,
-
+  poweredBy,
+  currentRefinements
 } from 'instantsearch.js/es/widgets'
 
 const searchClient = algoliasearch('L1292YARWK', '71cf36ea528d375a21804d918d0c5ed4');
@@ -47,8 +48,9 @@ searchTalks.addWidgets([
   sortBy({
     container: '#sort-by',
     items: [
-      { label: 'Our Picks', value: 'TEDTalks_talks' },
+      { label: 'Newest', value: 'TEDTalks_talks' },
       { label: 'Most Viewed', value: 'talks_viewed_count_desc' },
+      { label: 'Most Popular', value: 'talks_popularity_score_desc'}
     ],
     cssClasses:{
       select: 'form-control'
@@ -95,6 +97,21 @@ searchTalks.addWidgets([
     }
   }),
 
+  poweredBy({
+    container: '#powered-by'
+  }),
+
+  currentRefinements({
+    container: "#current-refinements",
+    cssClasses: {
+      root: 'mb-3',
+      item: 'd-inline-block',
+      label: 'badge badge-pill',
+      category: 'tag badge badge-pill badge-secondary ml-1',
+      delete: 'badge badge-light ml-1'
+    }
+  }),
+
   // Decided to do infiniteHits widget instead.
 /*   pagination({
     container: '#pagination',
@@ -117,7 +134,7 @@ searchTalks.addWidgets([
     cssClasses: {
       item: 'col-sm-4 col-md-3 col-lg-2 mb-4',
       list: 'row',
-      loadMore: 'btn btn-lg btn-outline-primary',
+      loadMore: 'btn btn-lg btn-outline-primary btn-block',
       disabledLoadMore: 'btn btn-lg btn-outline-primary btn-disabled'
     },
     templates: {

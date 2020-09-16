@@ -9,6 +9,7 @@ const speakers = require('../data/tedtalks/speakers.json');
 const playlists = require('../data/tedtalks/playlists.json');
 // Settings files for replica indicies
 const talks_viewed_count_desc_settings = require('../data/tedtalks/talks_viewed_count_desc_settings.json');
+const talks_popularity_score_desc_settings = require ('../data/tedtalks/talks_popularity_score_desc_settings.json');
 
 // Initialize Algolia API
 const client = algoliasearch('L1292YARWK', adminAPI);
@@ -20,3 +21,4 @@ client.initIndex('TEDTalks_playlists').saveObjects(playlists);
 
 // Create replica indicies for the talks index and import their settings
 client.initIndex('talks_viewed_count_desc').setSettings(talks_viewed_count_desc_settings);
+client.initIndex('talks_popularity_score_desc').setSettings(talks_popularity_score_desc_settings);
