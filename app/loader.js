@@ -8,4 +8,10 @@ const talks = require('../data/tedtalks/talks.json');
 const speakers = require('../data/tedtalks/speakers.json');
 const playlists = require('../data/tedtalks/playlists.json');
 
-// Load records
+// Initialize Algolia API
+const client = algoliasearch('L1292YARWK', apiConfig.AdminAPIKey);
+
+// Import records
+client.initIndex('TEDTalks_talks').saveObjects(talks);
+client.initIndex('TEDTalks_speakers').saveObjects(speakers);
+client.initIndex('TEDTalks_playlists').saveObjects(playlists);
