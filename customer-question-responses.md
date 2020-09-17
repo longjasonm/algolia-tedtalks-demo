@@ -1,7 +1,9 @@
 Question 1:
 Hello,
 
-I'm new to search engines, and there are a lot of concepts I'm not educated on. To make my onboarding smoother, it'd help if you could provide me with some definitions of the following concepts:
+I'm new to search engines, and there are a lot of concepts I'm not educated on. 
+
+To make my onboarding smoother, it'd help if you could provide me with some definitions of the following concepts:
 - Records
 - Indexing
 
@@ -27,9 +29,7 @@ Thanks for reaching out, and I'm happy to answer any questions as you get starte
 
  Kindly,
 
- Jason Long 
- Solutions Engineer 
- Algolia
+Jason Long | Solutions Engineer | Algolia
 
 ---
 
@@ -45,7 +45,7 @@ Matt
 
 Matt,
 
-First off, thanks for reaching out directly to us about this...we wouldn't be where we are without our customers giving us feedback. I'm sorry that the new design is complicating your workflow; as we add new features and functionality sometimes parts of the UI need to be shifted and relocated for the best possible experience for all users, and I assure you we don't take those design decisions lightly. I will share your feedback with the product team and make sure that your concerns are heard.
+First off, thanks for reaching out directly to us about this...we wouldn't be where we are today without our customers giving us feedback, both positive and negative. I'm sorry that the new design is complicating your workflow; as we add new features and functionality sometimes parts of the UI need to be shifted and relocated for the best possible experience for all users, and I assure you we don't take those design decisions lightly. I will share your feedback with the product team and make sure that your concerns are heard.
 
 If you're doing development often within Algolia, consider using our API client instead of working with indices in the dashboard. There are methods for both of the tasks you mentioned written in a number of different languages, so you could write a small application to handle these operations. Here are links to the API docs for the JS implementation (other languages can be selected via the dropdown on the page):
 
@@ -58,9 +58,7 @@ Thank you again for your candid feedback and for trusting us with your business.
 
 Kindly,
 
-Jason Long
-Solutions Engineer
-Algolia
+Jason Long | Solutions Engineer | Algolia
 
 ---
 
@@ -94,6 +92,4 @@ Thanks again for your interest in Algolia!
 
 Kindly,
 
-Jason Long
-Solutions Engineer
-Algolia
+Jason Long | Solutions Engineer | Algolia
