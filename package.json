@@ -25,8 +25,5 @@
     "moment": "^2.28.0",
     "momentjs": "^2.0.0",
     "parcel": "^1.12.4"
-  },
-  "devDependencies": {
-    "node-forge": ">=0.10.0"
   }
 }
