@@ -9,16 +9,17 @@ I'm also struggling with understanding what types of metrics would be useful to 
 
 Cheers,
 George
+
 ---
 George,
 
 Thanks for reaching out, and I'm happy to answer any questions as you get started. Here are some "human" definitions of the terms you asked about:
 
-- Records: a self-contained set of attributes (keys) and values for those attributes. An example near and dear to my heart: Movies...the record for the movie "The Big Lebowski" could contain attributes like `Release Date: 1998` and `Stars: Jeff Bridges, John Goodman, Steve Buscemi`. When searching or filtering by actor Jeff Bridges, the record for "The Big Lebowski" would be part of the result set because the record contains the value(s) for the attribute `Actor`. [https://www.algolia.com/doc/guides/sending-and-managing-data/prepare-your-data/#algolia-records]
+- **Records:** a self-contained set of attributes (keys) and values for those attributes. An example near and dear to my heart: Movies...the record for the movie "The Big Lebowski" could contain attributes like `Release Date: 1998` and `Stars: Jeff Bridges, John Goodman, Steve Buscemi`. When searching or filtering by actor Jeff Bridges, the record for "The Big Lebowski" would be part of the result set because the record contains the value(s) for the attribute `Actor`. [https://www.algolia.com/doc/guides/sending-and-managing-data/prepare-your-data/#algolia-records]
 
-- Indexing: creating a collection of records and organizing those records in a particular way to facilitate quick results when interacting with the data. Proper indexing improves user experience by organizing the data in logical ways, helping your users find the right records quickly. One example from Algolia would be having two indices with the same data, but organized differently: Recipes...one index of recipes can be sorted by time (quickest to slowest) for users looking for a quick meal, and another index could be sorted by popularity for users looking for the recipes with the best reviews. [https://www.algolia.com/doc/guides/sending-and-managing-data/prepare-your-data/#algolia-index]
+- **Indexing:** creating a collection of records and organizing those records in a particular way to facilitate quick results when interacting with the data. Proper indexing improves user experience by organizing the data in logical ways, helping your users find the right records quickly. One example from Algolia would be having two indices with the same data, but organized differently: Recipes...one index of recipes can be sorted by time (quickest to slowest) for users looking for a quick meal, and another index could be sorted by popularity for users looking for the recipes with the best reviews. [https://www.algolia.com/doc/guides/sending-and-managing-data/prepare-your-data/#algolia-index]
 
-- Custom Ranking: going back to the definition of index above, Custom Ranking in Algolia means creating a custom organizing and/or sorting method for your data that makes the most sense to your business goals. Algolia has a set of built-in ranking criteria that we use to help return the right results fast, but you can augment this functionality by adding your own custom criteria. Examples include ratings, video views, conversion rate, etc. [https://www.algolia.com/doc/guides/managing-results/must-do/custom-ranking/#custom-ranking]
+- **Custom Ranking:** Custom Ranking criteria should be chosen in a way makes the most sense to align with your business goals and provide the best customer experience. In the case of ecommerce, you could use product rating or add-to-cart rate as a metric to serve up the most successful products; a media search experience may want to use number of downloads or views to surface the most helpful content. Ultimately, it comes down to what provides the most relevant search experience to your users and success for your business.  [https://www.algolia.com/doc/guides/managing-results/must-do/custom-ranking/#custom-ranking]
 
  I've included links to our documentation after each so you can dive in further if need be. It's a great resource for both concepts and code/implementation examples...and I hear the search is pretty good too :)
 
@@ -26,8 +27,8 @@ Thanks for reaching out, and I'm happy to answer any questions as you get starte
 
  Kindly,
 
- Jason Long
- Solutions Engineer
+ Jason Long 
+ Solutions Engineer 
  Algolia
 
 ---
