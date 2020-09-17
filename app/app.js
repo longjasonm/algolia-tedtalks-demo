@@ -100,13 +100,13 @@ searchTalks.addWidgets([
     }
   }),
 
-  refinementList({
+  /* refinementList({
     container: '#refinements-duration_range',
     attribute: 'duration_range',
     cssClasses: {
       count: 'count badge badge-pill badge-light border'
     }
-  }),
+  }), */
 
   poweredBy({
     container: '#powered-by'
@@ -215,3 +215,13 @@ searchTalks.addWidgets([
 ]);
 
 searchTalks.start();
+
+const searchSpeakers = instantsearch({
+  indexName: 'TEDTalks_speakers',
+  searchClient,
+  routing: true
+});
+
+searchSpeakers.addWidgets([
+
+])
