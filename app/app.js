@@ -1,5 +1,5 @@
-import algoliasearch from '../node_modules/algoliasearch';
-import instantsearch from '../node_modules/instantsearch.js';
+import algoliasearch from '../static/algoliasearch';
+import instantsearch from '../static/instantsearch.js';
 import {
   searchBox,
   configure,
@@ -9,7 +9,7 @@ import {
   infiniteHits,
   poweredBy,
   currentRefinements
-} from '../node_modules/instantsearch.js/es/widgets'
+} from '../static/instantsearch.js/es/widgets'
 
 const searchClient = algoliasearch('L1292YARWK', '71cf36ea528d375a21804d918d0c5ed4');
 
