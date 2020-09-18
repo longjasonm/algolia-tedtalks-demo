@@ -29,7 +29,7 @@ With that large hurdle out of the way, it was just locally testing everything to
 
 **Would I have done anything differently?**: I think if this was a real-world situation, I wouldn't have agonized over every pixel of the front end. Getting the search behavior and demonstrating the speed and relevance of the Algolia API is really the end goal of a demo like this.
 
-**Future Plans:** Would love to write this in the React Instantsearch library...maybe next time...
+**Future Plans:** Would love to write this in the React Instantsearch library, and given that we are dealing with media with lots of rich metadata, the Related Items widget and Personaliziation would be awesome to build into this experience.
 
 This has been a blast...the speed of Algolia, the well-executed APIs, and well-written documentation made this a super engaging project, and it was really hard to step away from the keyboard until it was done. 
 
