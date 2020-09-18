@@ -1,15 +1,3 @@
-import algoliasearch from '../static/algoliasearch';
-import instantsearch from '../static/instantsearch.js';
-import {
-  searchBox,
-  configure,
-  clearRefinements,
-  sortBy,
-  refinementList,
-  infiniteHits,
-  poweredBy,
-  currentRefinements
-} from '../static/instantsearch.js/es/widgets'
 
 const searchClient = algoliasearch('L1292YARWK', '71cf36ea528d375a21804d918d0c5ed4');
 
@@ -20,7 +8,7 @@ const searchTalks = instantsearch({
 });
 
 searchTalks.addWidgets([
-  searchBox({
+  instantsearch.widgets.searchBox({
     container: "#searchbox",
     cssClasses: {
       input: 'form-control form-control-lg'
@@ -31,12 +19,12 @@ searchTalks.addWidgets([
     autofocus: true
   }),
 
-  configure({
+  instantsearch.widgets.configure({
     hitsPerPage: 24,
     enablePersonalization: true,
   }),
 
-  clearRefinements({
+  instantsearch.widgets.clearRefinements({
     container: '#clear-refinements',
     cssClasses: {
       button: 'btn btn-secondary btn-sm btn-block my-2',
@@ -47,7 +35,7 @@ searchTalks.addWidgets([
     },
   }),
 
-  sortBy({
+  instantsearch.widgets.sortBy({
     container: '#sort-by',
     items: [{
         label: '🆕 Newest',
@@ -103,7 +91,7 @@ searchTalks.addWidgets([
     }
   }),
 
-  refinementList({
+  instantsearch.widgets.refinementList({
     container: '#refinements-tags',
     attribute: 'tags',
     cssClasses: {
@@ -111,7 +99,7 @@ searchTalks.addWidgets([
     }
   }),
 
-  refinementList({
+  instantsearch.widgets.refinementList({
     container: '#refinements-event_name',
     attribute: 'event_name',
     cssClasses: {
@@ -119,7 +107,7 @@ searchTalks.addWidgets([
     }
   }),
 
-  refinementList({
+  instantsearch.widgets.refinementList({
     container: '#refinements-languages',
     attribute: 'languages',
     cssClasses: {
@@ -127,7 +115,7 @@ searchTalks.addWidgets([
     }
   }),
 
-  refinementList({
+  instantsearch.widgets.refinementList({
     container: '#refinements-speakers',
     attribute: 'speakers',
     cssClasses: {
@@ -135,7 +123,7 @@ searchTalks.addWidgets([
     }
   }),
 
-  /* refinementList({
+  /* instantsearch.widgets.refinementList({
     container: '#refinements-duration_range',
     attribute: 'duration_range',
     cssClasses: {
@@ -143,11 +131,11 @@ searchTalks.addWidgets([
     }
   }), */
 
-  poweredBy({
+  instantsearch.widgets.poweredBy({
     container: '#powered-by'
   }),
 
-  currentRefinements({
+  instantsearch.widgets.currentRefinements({
     container: "#current-refinements",
     cssClasses: {
       root: 'mb-3',
@@ -158,7 +146,7 @@ searchTalks.addWidgets([
     }
   }),
 
-  infiniteHits({
+  instantsearch.widgets.infiniteHits({
     container: "#hits",
     cssClasses: {
       item: 'col-sm-4 col-md-4 col-lg-3 col-xl-2 mb-4',
@@ -243,7 +231,7 @@ const searchSpeakers = instantsearch({
 });
 
 searchSpeakers.addWidgets([
-  searchBox({
+  instantsearch.widgets.searchBox({
     container: "#speakers-searchbox",
     cssClasses: {
       input: 'form-control form-control-lg'
@@ -254,12 +242,12 @@ searchSpeakers.addWidgets([
     autofocus: true
   }),
 
-  configure({
+  instantsearch.widgets.configure({
     hitsPerPage: 24,
     enablePersonalization: true,
   }),
 
-  clearRefinements({
+  instantsearch.widgets.clearRefinements({
     container: '#clear-refinements',
     cssClasses: {
       button: 'btn btn-secondary btn-sm btn-block my-2',
@@ -270,11 +258,11 @@ searchSpeakers.addWidgets([
     },
   }),
 
-  poweredBy({
+  instantsearch.widgets.poweredBy({
     container: '#speakers-powered-by'
   }),
 
-  currentRefinements({
+  instantsearch.widgets.currentRefinements({
     container: "#speakers-current-refinements",
     cssClasses: {
       root: 'mb-3',
@@ -285,7 +273,7 @@ searchSpeakers.addWidgets([
     }
   }),
 
-  infiniteHits({
+  instantsearch.widgets.infiniteHits({
     container: "#speakers-hits",
     cssClasses: {
       item: 'col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4',
@@ -327,7 +315,7 @@ const searchPlaylists = instantsearch({
 });
 
 searchPlaylists.addWidgets([
-  searchBox({
+  instantsearch.widgets.searchBox({
     container: "#playlists-searchbox",
     cssClasses: {
       input: 'form-control form-control-lg'
@@ -338,12 +326,12 @@ searchPlaylists.addWidgets([
     autofocus: true
   }),
 
-  configure({
+  instantsearch.widgets.configure({
     hitsPerPage: 24,
     enablePersonalization: true,
   }),
 
-  clearRefinements({
+  instantsearch.widgets.clearRefinements({
     container: '#clear-refinements',
     cssClasses: {
       button: 'btn btn-secondary btn-sm btn-block my-2',
@@ -354,11 +342,11 @@ searchPlaylists.addWidgets([
     },
   }),
 
-  poweredBy({
+  instantsearch.widgets.poweredBy({
     container: '#playlists-powered-by'
   }),
 
-  currentRefinements({
+  instantsearch.widgets.currentRefinements({
     container: "#playlists-current-refinements",
     cssClasses: {
       root: 'mb-3',
@@ -369,7 +357,7 @@ searchPlaylists.addWidgets([
     }
   }),
 
-  infiniteHits({
+  instantsearch.widgets.infiniteHits({
     container: "#playlists-hits",
     cssClasses: {
       item: 'col-12 mb-3',
