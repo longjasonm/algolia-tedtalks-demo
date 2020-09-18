@@ -31,6 +31,7 @@ With that large hurdle out of the way, it was just locally testing everything to
 
 **Future Plans:** Would love to write this in the React Instantsearch library, and given that we are dealing with media with lots of rich metadata, the Related Items widget and Personaliziation would be awesome to build into this experience.
 
+**Conclusion:**
 This has been a blast...the speed of Algolia, the well-executed APIs, and well-written documentation made this a super engaging project, and it was really hard to step away from the keyboard until it was done. 
 
 Please provide any feedback directly here in the repo, and feel free to share, fork, and comment! 
