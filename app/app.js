@@ -22,8 +22,8 @@ const searchTalks = instantsearch({
 searchTalks.addWidgets([
   searchBox({
     container: "#searchbox",
-    cssClasses:{
-      input: 'form-control'
+    cssClasses: {
+      input: 'form-control form-control-lg'
     },
     placeholder: 'Search by title, description, speaker, event or topic...',
     showReset: false,
@@ -42,28 +42,63 @@ searchTalks.addWidgets([
       button: 'btn btn-secondary btn-sm btn-block my-2',
       disabled: 'btn btn-secondary btn-sm btn-block btn-disabled mb-2'
     },
-    templates:{
+    templates: {
       resetLabel: 'Clear your selections'
     },
   }),
 
   sortBy({
     container: '#sort-by',
-    items: [
-      { label: '🆕 Newest', value: 'TEDTalks_talks' },
-      { label: '😍 Beautiful', value: 'talks_beautiful_rating_desc'},
-      { label: '🦁 Courageous', value: 'talks_courageous_rating_desc'},
-      { label: '🧐 Fascinating', value: 'talks_fascinating_rating_desc'},
-      { label: '😂 Funniest', value: 'talks_funny_rating_desc'},
-      { label: '🤓 Informative', value: 'talks_informative_rating_desc'},
-      { label: '🤯 Ingenious', value: 'talks_ingenious_rating_desc'},
-      { label: '🤩 Inspiring', value: 'talks_inspiring_rating_desc'},
-      { label: '😲 Jaw Dropping', value: 'talks_jaw_droping_rating_desc'},
-      { label: '😏 Persuasive', value: 'talks_persuasive_rating_desc'},
-      { label: '😎 Popular', value: 'talks_popularity_score_desc'},
-      { label: '📺 Most Viewed', value: 'talks_viewed_count_desc' }
+    items: [{
+        label: '🆕 Newest',
+        value: 'TEDTalks_talks'
+      },
+      {
+        label: '😍 Beautiful',
+        value: 'talks_beautiful_rating_desc'
+      },
+      {
+        label: '🦁 Courageous',
+        value: 'talks_courageous_rating_desc'
+      },
+      {
+        label: '🧐 Fascinating',
+        value: 'talks_fascinating_rating_desc'
+      },
+      {
+        label: '😂 Funniest',
+        value: 'talks_funny_rating_desc'
+      },
+      {
+        label: '🤓 Informative',
+        value: 'talks_informative_rating_desc'
+      },
+      {
+        label: '🤯 Ingenious',
+        value: 'talks_ingenious_rating_desc'
+      },
+      {
+        label: '🤩 Inspiring',
+        value: 'talks_inspiring_rating_desc'
+      },
+      {
+        label: '😲 Jaw Dropping',
+        value: 'talks_jaw_droping_rating_desc'
+      },
+      {
+        label: '😏 Persuasive',
+        value: 'talks_persuasive_rating_desc'
+      },
+      {
+        label: '😎 Popular',
+        value: 'talks_popularity_score_desc'
+      },
+      {
+        label: '📺 Most Viewed',
+        value: 'talks_viewed_count_desc'
+      }
     ],
-    cssClasses:{
+    cssClasses: {
       select: 'form-control'
     }
   }),
@@ -123,27 +158,10 @@ searchTalks.addWidgets([
     }
   }),
 
-  // Decided to do infiniteHits widget instead.
-/*   pagination({
-    container: '#pagination',
-    cssClasses: {
-      root: 'd-flex justify-content-center mb-5',
-      list: 'btn-group',
-      item: 'btn btn-sm btn-outline-primary px-3',
-      selectedItem: 'btn btn-sm btn-primary px-3',
-    },
-      showFirst: false,
-      showLast: false,
-      showNext: false,
-      showPrevious: false
-  }), */
-
-  // TODO: Add moment.js for relative date filtering
-
   infiniteHits({
     container: "#hits",
     cssClasses: {
-      item: 'col-sm-4 col-md-3 col-lg-2 mb-4',
+      item: 'col-sm-4 col-md-4 col-lg-3 col-xl-2 mb-4',
       list: 'row',
       loadMore: 'btn btn-lg btn-outline-custom btn-block mb-5',
       disabledLoadMore: 'btn btn-lg btn-outline-custom btn-disabled'
@@ -206,7 +224,7 @@ searchTalks.addWidgets([
       const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       return items.map(item => ({
         ...item,
-        date: monthNames[new Date(item.date*1000).getMonth()]+` `+ new Date(item.date*1000).getFullYear()
+        date: monthNames[new Date(item.date * 1000).getMonth()] + ` ` + new Date(item.date * 1000).getFullYear()
       }));
     },
   }),
@@ -216,12 +234,163 @@ searchTalks.addWidgets([
 
 searchTalks.start();
 
+// Speakers
+
 const searchSpeakers = instantsearch({
-  indexName: 'TEDTalks_speakers',
+  indexName: 'speakers_with_talks',
   searchClient,
   routing: true
 });
 
 searchSpeakers.addWidgets([
+  searchBox({
+    container: "#speakers-searchbox",
+    cssClasses: {
+      input: 'form-control form-control-lg'
+    },
+    placeholder: 'Search for a speaker or one of their talks...',
+    showReset: false,
+    showSubmit: false,
+    autofocus: true
+  }),
 
+  configure({
+    hitsPerPage: 24,
+    enablePersonalization: true,
+  }),
+
+  clearRefinements({
+    container: '#clear-refinements',
+    cssClasses: {
+      button: 'btn btn-secondary btn-sm btn-block my-2',
+      disabled: 'btn btn-secondary btn-sm btn-block btn-disabled mb-2'
+    },
+    templates: {
+      resetLabel: 'Clear your selections'
+    },
+  }),
+
+  poweredBy({
+    container: '#speakers-powered-by'
+  }),
+
+  currentRefinements({
+    container: "#speakers-current-refinements",
+    cssClasses: {
+      root: 'mb-3',
+      item: 'd-inline-block',
+      label: 'badge badge-pill',
+      category: 'tag badge badge-pill badge-secondary ml-1',
+      delete: 'badge badge-light ml-1'
+    }
+  }),
+
+  infiniteHits({
+    container: "#speakers-hits",
+    cssClasses: {
+      item: 'col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4',
+      list: 'row',
+      loadMore: 'btn btn-lg btn-outline-custom btn-block mb-5',
+      disabledLoadMore: 'btn btn-lg btn-outline-custom btn-disabled'
+    },
+    templates:{
+      item:
+      `
+      <div class="card speaker-hit  h-100">
+            <div class="card-img-top"><a href="https://www.ted.com/speakers/{{slug}}"><img src="{{image_url}}" alt="{{name}}" class="card-img" /></a></div>
+              <div class="card-body">
+                <h4><a href="https://www.ted.com/speakers/{{slug}}">{{#helpers.highlight}}{"attribute" : "name"}{{/helpers.highlight}}</a></h4>
+                <p><em>{{description}}</em></p>
+                <p><b>Talks:</b></p>
+                <ul>
+                {{#talks}}
+                  <li><a href="https://www.ted.com/talks/{{slug}}">{{name}}</a></li>
+                {{/talks}}
+                </ul>
+            </div>
+        </div>
+      </div>
+
+      `
+    }
+  })
 ])
+
+searchSpeakers.start();
+
+// Playlists
+
+const searchPlaylists = instantsearch({
+  indexName: 'TEDTalks_playlists',
+  searchClient,
+  routing: true
+});
+
+searchPlaylists.addWidgets([
+  searchBox({
+    container: "#playlists-searchbox",
+    cssClasses: {
+      input: 'form-control form-control-lg'
+    },
+    placeholder: 'Search Playlists...',
+    showReset: false,
+    showSubmit: false,
+    autofocus: true
+  }),
+
+  configure({
+    hitsPerPage: 24,
+    enablePersonalization: true,
+  }),
+
+  clearRefinements({
+    container: '#clear-refinements',
+    cssClasses: {
+      button: 'btn btn-secondary btn-sm btn-block my-2',
+      disabled: 'btn btn-secondary btn-sm btn-block btn-disabled mb-2'
+    },
+    templates: {
+      resetLabel: 'Clear your selections'
+    },
+  }),
+
+  poweredBy({
+    container: '#playlists-powered-by'
+  }),
+
+  currentRefinements({
+    container: "#playlists-current-refinements",
+    cssClasses: {
+      root: 'mb-3',
+      item: 'd-inline-block',
+      label: 'badge badge-pill',
+      category: 'tag badge badge-pill badge-secondary ml-1',
+      delete: 'badge badge-light ml-1'
+    }
+  }),
+
+  infiniteHits({
+    container: "#playlists-hits",
+    cssClasses: {
+      item: 'col-12 mb-3',
+      list: 'row',
+      loadMore: 'btn btn-lg btn-outline-custom btn-block mb-5',
+      disabledLoadMore: 'btn btn-lg btn-outline-custom btn-disabled'
+    },
+    templates:{
+      item:
+      `
+      <div class="card playlist-hit h-100">
+              <div class="card-body">
+                <h5><a href="https://www.ted.com/playlists/{{slug}}">{{#helpers.highlight}}{"attribute" : "title"}{{/helpers.highlight}}</a></h5>
+                <p><em>{{description}}</em></p>
+            </div>
+        </div>
+      </div>
+
+      `
+    }
+  })
+])
+
+searchPlaylists.start();

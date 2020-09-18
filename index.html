@@ -15,80 +15,147 @@
 <body>
     <header>
         <div class="row no-gutters">
-            <div class="col-sm-1"> <img src="https://pi.tedcdn.com/r/pl.tedcdn.com/social/ted-logo-fb.png?v=wAff13s?" class="img-fluid">
-                </div>
-            <div class="col-sm-11 align-self-center"><h1>TEDTalks Catalog Search</h1></div>
+            <div class="col-sm-1"> <img src="https://pi.tedcdn.com/r/pl.tedcdn.com/social/ted-logo-fb.png?v=wAff13s?"
+                    class="img-fluid">
+            </div>
+            <div class="col-sm-11 align-self-center">
+                <h1>TEDTalks Catalog Search</h1>
+            </div>
         </div>
     </header>
+
     <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <div class="ais-InstantSearch">
-                    <div id="searchbox" class="ais-SearchBox my-4"></div>
-                    <div class="row">
-                        <div class="left-panel col-sm-4 col-md-3 col-lg-2">
-                            <div id="sort-container" class="mb-4"><h6>Sort results by:</h6>
-                                <div id="sort-by"></div>
-                            </div>
-                            <div id="clear-refinements" class=""></div>
-                            <div id="refinements-container">
-                                <div class="refinements mb-2 card">
-                                    <div class="card-header">
-                                        <div id="refinements-title-tags" class="btn btn-link btn-block text-left collapsed" data-toggle="collapse"
-                                            data-target="#refinements-tags-wrap" aria-expanded="false"
-                                            aria-controls="refinements-tags-wrap">Topics</div>
+        <ul class="nav nav-pills my-3 justify-content-center" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="pills-talks-tab" data-toggle="pill" href="#pills-talks" role="tab"
+                    aria-controls="pills-talks" aria-selected="true">Talks</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-speakers-tab" data-toggle="pill" href="#pills-speakers" role="tab"
+                    aria-controls="pills-speakers" aria-selected="false">Speakers</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-playlists-tab" data-toggle="pill" href="#pills-playlists" role="tab"
+                    aria-controls="pills-playlists" aria-selected="false">Playlists</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-talks" role="tabpanel" aria-labelledby="pills-talks-tab">
+                <div class="row">
+                    <div class="col">
+                        <div class="ais-InstantSearch">
+                            <div id="searchbox" class="ais-SearchBox my-4"></div>
+                            <div class="row">
+                                <div class="left-panel col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                                    <div id="sort-container" class="mb-4">
+                                        <h6>Sort results by:</h6>
+                                        <div id="sort-by"></div>
                                     </div>
-                                    <div id="refinements-tags-wrap" class="collapse"
-                                        aria-labelledby="refinements-title-tags" data-parent="#refinements-container">
-                                        <div id="refinements-tags" class="card-body"></div>
+                                    <div id="clear-refinements" class=""></div>
+                                    <div id="refinements-container">
+                                        <div class="refinements mb-2 card">
+                                            <div class="card-header">
+                                                <div id="refinements-title-tags"
+                                                    class="btn btn-link btn-block text-left collapsed"
+                                                    data-toggle="collapse" data-target="#refinements-tags-wrap"
+                                                    aria-expanded="false" aria-controls="refinements-tags-wrap">Topics
+                                                </div>
+                                            </div>
+                                            <div id="refinements-tags-wrap" class="collapse"
+                                                aria-labelledby="refinements-title-tags"
+                                                data-parent="#refinements-container">
+                                                <div id="refinements-tags" class="card-body"></div>
+                                            </div>
+                                        </div>
+                                        <div class="refinements my-2 card">
+                                            <div class="card-header">
+                                                <div id="refinements-title-event_name"
+                                                    class="btn btn-link btn-block text-left collapsed"
+                                                    data-toggle="collapse" data-target="#refinements-event_name-wrap"
+                                                    aria-expanded="false" aria-controls="refinements-event_name-wrap">
+                                                    Event Name</div>
+                                            </div>
+                                            <div id="refinements-event_name-wrap" class="collapse"
+                                                aria-labelledby="refinements-title-event_name"
+                                                data-parent="#refinements-container">
+                                                <div id="refinements-event_name" class="card-body"></div>
+                                            </div>
+                                        </div>
+                                        <div class="refinements my-2 card">
+                                            <div class="card-header">
+                                                <div id="refinements-title-languages"
+                                                    class="btn btn-link btn-block text-left collapsed"
+                                                    data-toggle="collapse" data-target="#refinements-languages-wrap"
+                                                    aria-expanded="false" aria-controls="refinements-languages-wrap">
+                                                    Languages</div>
+                                            </div>
+                                            <div id="refinements-languages-wrap" class="collapse"
+                                                aria-labelledby="refinements-title-languages"
+                                                data-parent="#refinements-container">
+                                                <div id="refinements-languages" class="card-body"></div>
+                                            </div>
+                                        </div>
+                                        <div class="refinements my-2 card">
+                                            <div class="card-header">
+                                                <div id="refinements-title-speakers"
+                                                    class="btn btn-link btn-block text-left collapsed"
+                                                    data-toggle="collapse" data-target="#refinements-speakers-wrap"
+                                                    aria-expanded="false" aria-controls="refinements-speakers-wrap">
+                                                    Speaker(s)</div>
+                                            </div>
+                                            <div id="refinements-speakers-wrap" class="collapse"
+                                                aria-labelledby="refinements-title-speakers"
+                                                data-parent="#refinements-container">
+                                                <div id="refinements-speakers" class="card-body"></div>
+                                            </div>
+                                        </div>
+                                        <div id="powered-by"></div>
                                     </div>
                                 </div>
-                                <div class="refinements my-2 card">
-                                    <div class="card-header">
-                                        <div id="refinements-title-event_name" class="btn btn-link btn-block text-left collapsed" data-toggle="collapse"
-                                            data-target="#refinements-event_name-wrap" aria-expanded="false"
-                                            aria-controls="refinements-event_name-wrap">Event Name</div>
-                                    </div>
-                                    <div id="refinements-event_name-wrap" class="collapse"
-                                        aria-labelledby="refinements-title-event_name" data-parent="#refinements-container">
-                                        <div id="refinements-event_name" class="card-body"></div>
-                                    </div>
+                                <div class="right-panel col-sm-8 col-md-8 col-lg-9 col-xl-10">
+                                    <div id="current-refinements"></div>
+                                    <div id="hits"></div>
+                                    <div id="pagination"></div>
                                 </div>
-                                <div class="refinements my-2 card">
-                                    <div class="card-header">
-                                        <div id="refinements-title-languages" class="btn btn-link btn-block text-left collapsed" data-toggle="collapse"
-                                            data-target="#refinements-languages-wrap" aria-expanded="false"
-                                            aria-controls="refinements-languages-wrap">Languages</div>
-                                    </div>
-                                    <div id="refinements-languages-wrap" class="collapse"
-                                        aria-labelledby="refinements-title-languages" data-parent="#refinements-container">
-                                        <div id="refinements-languages" class="card-body"></div>
-                                    </div>
-                                </div>
-                                <div class="refinements my-2 card">
-                                    <div class="card-header">
-                                        <div id="refinements-title-speakers" class="btn btn-link btn-block text-left collapsed" data-toggle="collapse"
-                                            data-target="#refinements-speakers-wrap" aria-expanded="false"
-                                            aria-controls="refinements-speakers-wrap">Speaker(s)</div>
-                                    </div>
-                                    <div id="refinements-speakers-wrap" class="collapse"
-                                        aria-labelledby="refinements-title-speakers" data-parent="#refinements-container">
-                                        <div id="refinements-speakers" class="card-body"></div>
-                                    </div>
-                                </div>
-                                <div id="powered-by"></div>
                             </div>
                         </div>
-                        <div class="right-panel col-sm-9">
-                            <div id="current-refinements"></div>
-                            <div id="hits"></div>
-                            <div id="pagination"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-speakers" role="tabpanel" aria-labelledby="pills-speakers-tab">
+                <div class="row">
+                    <div class="col">
+                        <div class="ais-InstantSearch">
+                            <div id="speakers-searchbox" class="ais-SearchBox my-4"></div>
+                            <div id="speakers-powered-by"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <div id="speakers-current-refinements"></div>
+                                    <div id="speakers-hits"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="pills-playlists" role="tabpanel" aria-labelledby="pills-playlists-tab">
+                <div class="row">
+                    <div class="col">
+                        <div class="ais-InstantSearch">
+                            <div id="playlists-searchbox" class="ais-SearchBox my-4"></div>
+                            <div id="playlists-powered-by"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <div id="playlists-current-refinements"></div>
+                                    <div id="playlists-hits"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.0.0/dist/algoliasearch-lite.umd.js"

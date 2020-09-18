@@ -7,6 +7,7 @@ const { adminAPI } = require('./config.json');
 const talks = require('../data/tedtalks/talks.json');
 const speakers = require('../data/tedtalks/speakers.json');
 const playlists = require('../data/tedtalks/playlists.json');
+const speakers_with_talks = require('../data/speakers_with_talks.json');
 // Settings files for replica indicies
 const talks_settings = require('../data/tedtalks/talks_settings.json');
 const talks_beautiful_rating_desc_settings = require('../data/tedtalks/talks_beautiful_rating_desc_settings.json');
@@ -20,6 +21,8 @@ const talks_jaw_droping_rating_desc_settings = require('../data/tedtalks/talks_j
 const talks_persuasive_rating_desc_settings = require('../data/tedtalks/talks_persuasive_rating_desc_settings.json');
 const talks_popularity_score_desc_settings = require('../data/tedtalks/talks_popularity_score_desc_settings.json');
 const talks_viewed_count_desc_settings = require('../data/tedtalks/talks_viewed_count_desc_settings.json');
+const playlists_settings = require('../data/tedtalks/playlists_settings.json');
+const speakers_settings = require('../data/tedtalks/speakers_settings.json');
 
 // Initialize Algolia API
 const client = algoliasearch('L1292YARWK', adminAPI);
@@ -28,11 +31,14 @@ const client = algoliasearch('L1292YARWK', adminAPI);
 client.initIndex('TEDTalks_talks').saveObjects(talks);
 client.initIndex('TEDTalks_speakers').saveObjects(speakers);
 client.initIndex('TEDTalks_playlists').saveObjects(playlists);
+client.initIndex('speakers_with_talks').saveObjects(speakers_with_talks);
 
 const mainIndex = client.initIndex('TEDTalks_talks');
 
 // Import settings for primary index
 mainIndex.setSettings(talks_settings);
+
+// Import settings for replicas and initialize them if not there already.
 
 const replicas = [
     'talks_beautiful_rating_desc',
@@ -60,13 +66,8 @@ const settings = [
     talks_persuasive_rating_desc_settings,
     talks_popularity_score_desc_settings,
     talks_viewed_count_desc_settings
-]
+];
 
-// Create replica indicies for the talks index and import their settings
-client.initIndex('talks_viewed_count_desc').setSettings(talks_viewed_count_desc_settings);
-client.initIndex('talks_popularity_score_desc').setSettings(talks_popularity_score_desc_settings);
-
-// Create all other replicas...decided to update settings via dashboard.
 mainIndex.setSettings({
     replicas: replicas
 });
@@ -79,3 +80,8 @@ function updateAllSettings(indicies, settings) {
 }
 
 updateAllSettings(replicas, settings);
+
+// Import configuration is down for some reason during demo build, so going to upload settings here.
+client.initIndex('TEDTalks_speakers').setSettings(speakers_settings);
+client.initIndex('speakers_with_talks').setSettings(speakers_settings);
+client.initIndex('TEDTalks_playlists').setSettings(playlists_settings);
