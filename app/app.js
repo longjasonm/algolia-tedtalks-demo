@@ -1,5 +1,5 @@
-import algoliasearch from 'algoliasearch';
-import instantsearch from 'instantsearch.js';
+import algoliasearch from '../node_modules/algoliasearch';
+import instantsearch from '../node_modules/instantsearch.js';
 import {
   searchBox,
   configure,
@@ -9,7 +9,7 @@ import {
   infiniteHits,
   poweredBy,
   currentRefinements
-} from 'instantsearch.js/es/widgets'
+} from '../node_modules/instantsearch.js/es/widgets'
 
 const searchClient = algoliasearch('L1292YARWK', '71cf36ea528d375a21804d918d0c5ed4');
 
@@ -382,7 +382,7 @@ searchPlaylists.addWidgets([
       `
       <div class="card playlist-hit h-100">
               <div class="card-body">
-                <h5><a href="https://www.ted.com/playlists/{{slug}}">{{#helpers.highlight}}{"attribute" : "title"}{{/helpers.highlight}}</a></h5>
+                <h5><a href="https://www.ted.com/playlists/{{slug}}" class="stretched-link">{{#helpers.highlight}}{"attribute" : "title"}{{/helpers.highlight}}</a></h5>
                 <p><em>{{description}}</em></p>
             </div>
         </div>
