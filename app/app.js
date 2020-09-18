@@ -1,4 +1,3 @@
-
 const searchClient = algoliasearch('L1292YARWK', '71cf36ea528d375a21804d918d0c5ed4');
 
 const searchTalks = instantsearch({
@@ -184,7 +183,7 @@ searchTalks.addWidgets([
       </div>
       <div class="modal-body">
       <div class="row pb-3">
-        <div class="col-sm-6 align-self-center"><a href="https://www.ted.com/talks/{{slug}}"><img src="{{image_url}}" alt="{{name}} Video Thumbnail" class="img-fluid" /></a></div>
+        <div class="col-sm-6 align-self-center"><div class="video-wrap"><a href="https://www.ted.com/talks/{{slug}}"><div class="play-btn"></div><img src="{{image_url}}" alt="{{name}} Video Thumbnail" class="img-fluid" /></a></div></div>
         <div class="col-sm-6">
       <p class="hit-description">{{#helpers.highlight}}{"attribute" : "description"}{{/helpers.highlight}}</p>
       <p class="text-muted">Presented by: {{#speakers}}
@@ -281,9 +280,8 @@ searchSpeakers.addWidgets([
       loadMore: 'btn btn-lg btn-outline-custom btn-block mb-5',
       disabledLoadMore: 'btn btn-lg btn-outline-custom btn-disabled'
     },
-    templates:{
-      item:
-      `
+    templates: {
+      item: `
       <div class="card speaker-hit  h-100">
             <div class="card-img-top"><a href="https://www.ted.com/speakers/{{slug}}"><img src="{{image_url}}" alt="{{name}}" class="card-img" /></a></div>
               <div class="card-body">
@@ -365,9 +363,8 @@ searchPlaylists.addWidgets([
       loadMore: 'btn btn-lg btn-outline-custom btn-block mb-5',
       disabledLoadMore: 'btn btn-lg btn-outline-custom btn-disabled'
     },
-    templates:{
-      item:
-      `
+    templates: {
+      item: `
       <div class="card playlist-hit h-100">
               <div class="card-body">
                 <h5><a href="https://www.ted.com/playlists/{{slug}}" class="stretched-link">{{#helpers.highlight}}{"attribute" : "title"}{{/helpers.highlight}}</a></h5>
