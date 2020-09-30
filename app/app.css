@@ -168,7 +168,7 @@ a:hover{
   padding-left: 10px;
 }
 
-.list-inline-item:after{
+.list-inline-item:not(:last-child):after{
   content: ', ';
   margin-right: none;
 }
