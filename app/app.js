@@ -164,9 +164,11 @@ searchTalks.addWidgets([
             </a>
           </div>
           <div class="card-body">
-          <a href="#" title="Link to {{name}}" data-toggle="modal" data-target="#modal-{{objectID}}" class="stretched-link"><h4 class="hit-name">{{#helpers.highlight}}{"attribute" : "name"}{{/helpers.highlight}}</a></h4><small><em>{{#speakers}}
-          {{.}}
-         {{/speakers}}</em></small></p>
+          <a href="#" title="Link to {{name}}" data-toggle="modal" data-target="#modal-{{objectID}}" class="stretched-link"><h4 class="hit-name">{{#helpers.highlight}}{"attribute" : "name"}{{/helpers.highlight}}</a></h4><small><em><ul class="list-inline">
+          {{#speakers}}
+            <li class="list-inline-item">{{.}}</li>
+          {{/speakers}}
+          </ul></em></small></p>
          <small class="text-muted">Posted: {{date}}</small>
             </div>
           </div>
@@ -186,9 +188,12 @@ searchTalks.addWidgets([
         <div class="col-sm-6 align-self-center"><div class="video-wrap"><a href="https://www.ted.com/talks/{{slug}}"><div class="play-btn"></div><img src="{{image_url}}" alt="{{name}} Video Thumbnail" class="img-fluid" /></a></div></div>
         <div class="col-sm-6">
       <p class="hit-description">{{#helpers.highlight}}{"attribute" : "description"}{{/helpers.highlight}}</p>
-      <p class="text-muted">Presented by: {{#speakers}}
-        <a href="?TEDTalks_talks%5BrefinementList%5D%5Bspeakers%5D%5B0%5D={{.}}" title="More by this speaker">{{.}}</a>
-      {{/speakers}}</p>
+      <p class="text-muted">Presented by: 
+      <ul class="list-unstyled">
+      {{#speakers}}
+        <li><a href="?TEDTalks_talks%5BrefinementList%5D%5Bspeakers%5D%5B0%5D={{.}}" title="More by this speaker">{{.}}</a></li>
+      {{/speakers}}
+      </ul></p>
       <p class="text-muted">Event: <a href="?TEDTalks_talks%5BrefinementList%5D%5Bspeakers%5D%5B0%5D={{event_name}}">{{event_name}}</a></p>
       <small>Views: {{viewed_count}}</small>
       <div class="tag-wrapper">

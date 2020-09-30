@@ -167,3 +167,12 @@ a:hover{
   padding-top: 20px;
   padding-left: 10px;
 }
+
+.list-inline-item:after{
+  content: ', ';
+  margin-right: none;
+}
+
+.list-inline-item:last-child:after{
+  content: '';
+}
