@@ -170,7 +170,7 @@ a:hover{
 
 .list-inline-item:not(:last-child):after{
   content: ', ';
-  margin-right: none;
+  margin-right: 0 !important;
 }
 
 .list-inline-item:last-child:after{
