@@ -1,4 +1,4 @@
-const searchClient = algoliasearch('L1292YARWK', '71cf36ea528d375a21804d918d0c5ed4');
+const searchClient = algoliasearch('JINA8T7GLB', 'cccd3ff2b3aaa504c5028daee311d2ea');
 
 const searchTalks = instantsearch({
   indexName: 'TEDTalks_talks',

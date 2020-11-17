@@ -2,7 +2,7 @@
 // Import Algolia
 const algoliasearch = require('algoliasearch');
 // Algolia API Credentials -- Stored in config.json. See config-sample.json for format; obviously these are hidden for my safety!
-const { adminAPI } = require('./config.json');
+const { applicationId, adminApiKey, searchApiKey } = require('./config.json');
 // Local files used for data
 const talks = require('../data/tedtalks/talks.json');
 const speakers = require('../data/tedtalks/speakers.json');
@@ -25,7 +25,7 @@ const playlists_settings = require('../data/tedtalks/playlists_settings.json');
 const speakers_settings = require('../data/tedtalks/speakers_settings.json');
 
 // Initialize Algolia API
-const client = algoliasearch('L1292YARWK', adminAPI);
+const client = algoliasearch(applicationId, adminApiKey);
 
 // Import records
 client.initIndex('TEDTalks_talks').saveObjects(talks);
@@ -72,14 +72,19 @@ mainIndex.setSettings({
     replicas: replicas
 });
 
-function updateAllSettings(indicies, settings) {
-    for (let i = 0; i < indicies.length; i++) {
-        const element = indicies[i];
-        client.initIndex(element).setSettings(settings[i]);
-    }
-}
+replicas.forEach((replica, index) => {
+    client.initIndex(replica).setSettings(settings[index]);
+});
 
-updateAllSettings(replicas, settings);
+
+// function updateAllSettings(indicies, settings) {
+//     for (let i = 0; i < indicies.length; i++) {
+//         const element = indicies[i];
+//         client.initIndex(element).setSettings(settings[i]);
+//     }
+// }
+
+// updateAllSettings(replicas, settings);
 
 // Import configuration is down for some reason during demo build, so going to upload settings here.
 client.initIndex('TEDTalks_speakers').setSettings(speakers_settings);
