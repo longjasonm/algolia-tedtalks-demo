@@ -1,3 +1,4 @@
+
 const searchClient = algoliasearch('JINA8T7GLB', 'cccd3ff2b3aaa504c5028daee311d2ea');
 
 const searchTalks = instantsearch({
@@ -148,7 +149,7 @@ searchTalks.addWidgets([
   instantsearch.widgets.infiniteHits({
     container: "#hits",
     cssClasses: {
-      item: 'col-sm-4 col-md-4 col-lg-3 col-xl-2 mb-4',
+      item: 'col-sm-4 col-md-4 col-lg-4 col-xl-3 mb-4',
       list: 'row',
       loadMore: 'btn btn-lg btn-outline-custom btn-block mb-5',
       disabledLoadMore: 'btn btn-lg btn-outline-custom btn-disabled'
@@ -156,21 +157,24 @@ searchTalks.addWidgets([
     templates: {
       item: `
 
-        <div class="card h-100">
-          <div class="card-wrap">
-          <div class="card-img-top">
+        <div class="vid-card h-100">
+          <div class="vid-card-wrap">
+          <div class="vid-card-img-top">
             <a href="#" title="Link to {{name}}" data-toggle="modal" data-target="#modal-{{objectID}}">
               <img src="{{image_url}}" alt="{{name}} Video Thumbnail" class="img-fluid" />
             </a>
-          </div>
-          <div class="card-body">
-          <a href="#" title="Link to {{name}}" data-toggle="modal" data-target="#modal-{{objectID}}" class="stretched-link"><h4 class="hit-name">{{#helpers.highlight}}{"attribute" : "name"}{{/helpers.highlight}}</a></h4><small><em><ul class="list-inline">
-          {{#speakers}}
-            <li class="list-inline-item">{{.}}</li>
-          {{/speakers}}
-          </ul></em></small></p>
-         <small class="text-muted">Posted: {{date}}</small>
+            <div class="vid-card-body p-3">
+          <a href="#" title="Link to {{name}}" data-toggle="modal" data-target="#modal-{{objectID}}" class="stretched-link">
+            <h4 class="hit-name">{{#helpers.highlight}}{"attribute" : "name"}{{/helpers.highlight}}</a></h4>
+            <small><em><ul class="list-inline">
+              {{#speakers}}
+                <li class="list-inline-item">{{.}}</li>
+              {{/speakers}}
+             </ul></em></small>
+         <small>Posted: {{date}}</small>
             </div>
+          </div>
+          
           </div>
           </div>
         </div>
@@ -225,6 +229,15 @@ searchTalks.addWidgets([
 ]);
 
 searchTalks.start();
+
+let observe;
+searchTalks.on('render', () => {
+  if (!observe) {
+    const showMoreButton = document.querySelector('.ais-InfiniteHits-loadMore');
+    observe = new IntersectionObserver((entries) => {entries.forEach(entry => {entry.intersectionRatio > 0.5 ? showMoreButton.click() : null})});
+    observe.observe(showMoreButton);
+  }
+});
 
 // Speakers
 
@@ -384,3 +397,4 @@ searchPlaylists.addWidgets([
 ])
 
 searchPlaylists.start();
+

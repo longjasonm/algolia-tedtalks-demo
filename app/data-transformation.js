@@ -29,6 +29,13 @@ function talksToSpeakers(talks, speakers) {
     }
 }
 
+// Refactor
+// speakers.forEach(speaker => {
+//     const name = speaker.name;
+//     const talkJoin = talks.filter(talk => talk.speakers.find(speaker => speaker === name));
+//     speakers.talks = talkJoin;
+// });
+
 talksToSpeakers(slimmedDownTalks, speakers);
 // Write results to json file.
 fs.writeFile('../data/speakers_with_talks.json', JSON.stringify(speakers), (err) => {if (err) throw err});
