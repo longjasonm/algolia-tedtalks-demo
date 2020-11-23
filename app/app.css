@@ -11,13 +11,16 @@ body {
   border: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
+.ais-InfiniteHits-item .vid-card,
 .ais-InfiniteHits-item .card {
   transition: transform 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
   transform-origin: center center;
 }
+.ais-InfiniteHits-item .vid-card:hover,
 .ais-InfiniteHits-item .card:hover {
   -webkit-transform: scale3d(1.02, 1.02, 1.02);
   transform: scale3d(1.02);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .card-header {
   padding: 0.25rem 0.5rem;
@@ -88,35 +91,35 @@ span.tag {
 }
 
 .btn-outline-custom {
-    color: #c62f24;
-    border-color: #c62f24;
+  color: #c62f24;
+  border-color: #c62f24;
 }
 .btn-outline-custom:hover {
-    color: #fff;
-    background-color: #c62f24;
-    border-color: #c62f24;
+  color: #fff;
+  background-color: #c62f24;
+  border-color: #c62f24;
 }
 .btn-custom {
-    color: #fff;
-    background-color: #c62f24;
-    border-color: #c62f24;
+  color: #fff;
+  background-color: #c62f24;
+  border-color: #c62f24;
 }
 .btn-custom:hover {
-    color: #fff;
-    background-color: #f00;
-    border-color: #f00;
+  color: #fff;
+  background-color: #f00;
+  border-color: #f00;
 }
-a{
-    color: #c62f24;
+a {
+  color: #c62f24;
 }
-a:hover{
-    color: #62120d;
+a:hover {
+  color: #62120d;
 }
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
-    color: #fff;
-    background: #c62f24;
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background: #c62f24;
 }
-
 
 @media (max-width: 544px) {
   header h1 {
@@ -136,14 +139,14 @@ a:hover{
   line-height: 1; /* needed if using Bootstrap */
   text-align: center;
   color: #eaeaea;
-  background-color: rgba(255,255,255,.4);
+  background-color: rgba(255, 255, 255, 0.4);
   border-radius: 50px;
-  transition: color, background-color .2s ease;
+  transition: color, background-color 0.2s ease;
 }
 .video-wrap .play-btn:hover,
 .video-wrap .play-btn:focus {
   color: #000;
-  background-color: rgba(255,255,255,.8);
+  background-color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
 }
 .play-btn::after {
@@ -168,40 +171,35 @@ a:hover{
   padding-left: 10px;
 }
 
-.list-inline-item:not(:last-child):after{
-  content: ', ';
+.list-inline-item:not(:last-child):after {
+  content: ", ";
   margin-right: 0 !important;
 }
 
-.list-inline-item:last-child:after{
-  content: '';
+.list-inline-item:last-child:after {
+  content: "";
 }
 
-.vid-card{
-  transition: 0.15s all ease-in;
+.vid-card-img-top {
+  position: relative;
 }
 
-.vid-card:hover{
-  box-shadow: 0 0 25px #c62f24;
-}
-
-.vid-card-body{
+.vid-card-body {
   bottom: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   background: linear-gradient(
     180deg,
-    rgba(0,0,0, 0.2) 0%,
-    rgba(0,0,0, 0.8) 100%
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 1) 100%
   );
   position: absolute;
-  width: 92% /* Need to know why... */
+  width: 100%;
 }
 
-.vid-card h4 a{
+.vid-card h4 a {
   color: #fafafa;
 }
 
-.vid-card small{
-  color: #ccc
+.vid-card small {
+  color: #ccc;
 }
-

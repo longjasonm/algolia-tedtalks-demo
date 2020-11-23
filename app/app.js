@@ -7,11 +7,13 @@ const searchTalks = instantsearch({
   routing: true
 });
 
+
+
 searchTalks.addWidgets([
   instantsearch.widgets.searchBox({
     container: "#searchbox",
     cssClasses: {
-      input: 'form-control form-control-lg'
+      input: 'form-control form-control-lg search-box'
     },
     placeholder: 'Search by title, description, speaker, event or topic...',
     showReset: false,
@@ -38,53 +40,53 @@ searchTalks.addWidgets([
   instantsearch.widgets.sortBy({
     container: '#sort-by',
     items: [{
-        label: '🆕 Newest',
-        value: 'TEDTalks_talks'
-      },
-      {
-        label: '😍 Beautiful',
-        value: 'talks_beautiful_rating_desc'
-      },
-      {
-        label: '🦁 Courageous',
-        value: 'talks_courageous_rating_desc'
-      },
-      {
-        label: '🧐 Fascinating',
-        value: 'talks_fascinating_rating_desc'
-      },
-      {
-        label: '😂 Funniest',
-        value: 'talks_funny_rating_desc'
-      },
-      {
-        label: '🤓 Informative',
-        value: 'talks_informative_rating_desc'
-      },
-      {
-        label: '🤯 Ingenious',
-        value: 'talks_ingenious_rating_desc'
-      },
-      {
-        label: '🤩 Inspiring',
-        value: 'talks_inspiring_rating_desc'
-      },
-      {
-        label: '😲 Jaw Dropping',
-        value: 'talks_jaw_droping_rating_desc'
-      },
-      {
-        label: '😏 Persuasive',
-        value: 'talks_persuasive_rating_desc'
-      },
-      {
-        label: '😎 Popular',
-        value: 'talks_popularity_score_desc'
-      },
-      {
-        label: '📺 Most Viewed',
-        value: 'talks_viewed_count_desc'
-      }
+      label: '🆕 Newest',
+      value: 'TEDTalks_talks'
+    },
+    {
+      label: '😍 Beautiful',
+      value: 'talks_beautiful_rating_desc'
+    },
+    {
+      label: '🦁 Courageous',
+      value: 'talks_courageous_rating_desc'
+    },
+    {
+      label: '🧐 Fascinating',
+      value: 'talks_fascinating_rating_desc'
+    },
+    {
+      label: '😂 Funniest',
+      value: 'talks_funny_rating_desc'
+    },
+    {
+      label: '🤓 Informative',
+      value: 'talks_informative_rating_desc'
+    },
+    {
+      label: '🤯 Ingenious',
+      value: 'talks_ingenious_rating_desc'
+    },
+    {
+      label: '🤩 Inspiring',
+      value: 'talks_inspiring_rating_desc'
+    },
+    {
+      label: '😲 Jaw Dropping',
+      value: 'talks_jaw_droping_rating_desc'
+    },
+    {
+      label: '😏 Persuasive',
+      value: 'talks_persuasive_rating_desc'
+    },
+    {
+      label: '😎 Popular',
+      value: 'talks_popularity_score_desc'
+    },
+    {
+      label: '📺 Most Viewed',
+      value: 'talks_viewed_count_desc'
+    }
     ],
     cssClasses: {
       select: 'form-control'
@@ -95,8 +97,10 @@ searchTalks.addWidgets([
     container: '#refinements-tags',
     attribute: 'tags',
     cssClasses: {
+      labelText: 'animate-searchable',
       count: 'count badge badge-pill badge-light border'
-    }
+    },
+    limit: 50
   }),
 
   instantsearch.widgets.refinementList({
@@ -119,8 +123,10 @@ searchTalks.addWidgets([
     container: '#refinements-speakers',
     attribute: 'speakers',
     cssClasses: {
+      labelText: 'animate-searchable',
       count: 'count badge badge-pill badge-light border'
-    }
+    },
+    limit: 25
   }),
 
   /* instantsearch.widgets.refinementList({
@@ -149,7 +155,7 @@ searchTalks.addWidgets([
   instantsearch.widgets.infiniteHits({
     container: "#hits",
     cssClasses: {
-      item: 'col-sm-4 col-md-4 col-lg-4 col-xl-3 mb-4',
+      item: 'col-md-6 col-lg-4 col-xl-3 mb-4',
       list: 'row',
       loadMore: 'btn btn-lg btn-outline-custom btn-block mb-5',
       disabledLoadMore: 'btn btn-lg btn-outline-custom btn-disabled'
@@ -234,9 +240,57 @@ let observe;
 searchTalks.on('render', () => {
   if (!observe) {
     const showMoreButton = document.querySelector('.ais-InfiniteHits-loadMore');
-    observe = new IntersectionObserver((entries) => {entries.forEach(entry => {entry.intersectionRatio > 0.5 ? showMoreButton.click() : null})});
+    observe = new IntersectionObserver((entries) => { entries.forEach(entry => { entry.intersectionRatio > 0.5 ? showMoreButton.click() : null }) });
     observe.observe(showMoreButton);
   }
+
+  function toProperCase(str){
+    let arr = str.split(' ');
+    arr = arr.map(sub => sub.charAt(0).toUpperCase() + sub.substr(1));
+    return arr.join(' ');
+  }
+
+  const searchNodes = document.querySelectorAll('.animate-searchable');
+  const searchArray = [...searchNodes];
+  let searchTerms = [];
+  searchArray.forEach((term) => { searchTerms.push(toProperCase(term.innerText)) });
+  
+
+
+  const searchBar = document.querySelector('.search-box');
+
+  const MIN_ANIMATION_DELAY = 50;
+  const MAX_ANIMATION_DELAY = 90;
+
+  const getRandomDelayBetween = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+
+  const setPlaceholder = (inputNode, placeholder) => {
+    inputNode.setAttribute("placeholder", `Try searching for: ${placeholder}`);
+  };
+
+  const animateLetters = (currentLetters, remainingLetters, inputNode) => {
+    if (!remainingLetters.length) {
+      return;
+    }
+
+    currentLetters.push(remainingLetters.shift());
+
+    setTimeout(() => {
+      setPlaceholder(inputNode, currentLetters.join(''));
+      animateLetters(currentLetters, remainingLetters, inputNode);
+    }, getRandomDelayBetween(MIN_ANIMATION_DELAY, MAX_ANIMATION_DELAY));
+  };
+
+  const animatePlaceholder = (inputNode, placeholder) => {
+    animateLetters([], placeholder ? placeholder.split('') : 'topics, speakers, etc.', inputNode);
+  };
+
+  const timer = setInterval(() => { animatePlaceholder(searchBar, searchTerms[getRandomDelayBetween(0, searchTerms.length - 1)]) }, 6000);
+
+  searchBar.addEventListener('input', () => {
+    clearInterval(timer)
+  }, { once: true });
+
 });
 
 // Speakers
@@ -397,4 +451,3 @@ searchPlaylists.addWidgets([
 ])
 
 searchPlaylists.start();
-
