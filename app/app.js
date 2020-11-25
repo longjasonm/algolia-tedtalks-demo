@@ -24,6 +24,7 @@ searchTalks.addWidgets([
   instantsearch.widgets.configure({
     hitsPerPage: 24,
     enablePersonalization: true,
+    clickAnalytics: true
   }),
 
   instantsearch.widgets.clearRefinements({
@@ -162,7 +163,6 @@ searchTalks.addWidgets([
     },
     templates: {
       item: `
-
         <div class="vid-card h-100">
           <div class="vid-card-wrap">
           <div class="vid-card-img-top">
@@ -244,7 +244,7 @@ searchTalks.on('render', () => {
     observe.observe(showMoreButton);
   }
 
-  function toProperCase(str){
+  function toProperCase(str) {
     let arr = str.split(' ');
     arr = arr.map(sub => sub.charAt(0).toUpperCase() + sub.substr(1));
     return arr.join(' ');
@@ -254,7 +254,7 @@ searchTalks.on('render', () => {
   const searchArray = [...searchNodes];
   let searchTerms = [];
   searchArray.forEach((term) => { searchTerms.push(toProperCase(term.innerText)) });
-  
+
 
 
   const searchBar = document.querySelector('.search-box');
@@ -290,7 +290,6 @@ searchTalks.on('render', () => {
   searchBar.addEventListener('input', () => {
     clearInterval(timer)
   }, { once: true });
-
 });
 
 // Speakers
