@@ -1,13 +1,26 @@
+
+
+
+aa('init', {
+  appId: 'JINA8T7GLB',
+  apiKey: 'cccd3ff2b3aaa504c5028daee311d2ea',
+});
+
+// Since search-insights@2.0.0, cookie is not used for anonymous user token.
+// If you wish to continue, you can pass `useCookie: true`.
+aa('init', {
+  appId: 'JINA8T7GLB',
+  apiKey: 'cccd3ff2b3aaa504c5028daee311d2ea',
+  useCookie: true,
+})
+
+
 const searchClient = algoliasearch('JINA8T7GLB', 'cccd3ff2b3aaa504c5028daee311d2ea');
 
 const searchTalks = instantsearch({
   indexName: 'TEDTalks_talks',
   searchClient,
   routing: true,
-  insightsClient: window.aa,
-  insightsInitParams: {
-    useCookie: true,
-  }
 });
 
 searchTalks.addWidgets([
@@ -172,7 +185,7 @@ searchTalks.addWidgets([
               <img src="${hit.image_url}" alt="${hit.name} Video Thumbnail" class="img-fluid" ${bindEvent('click', hit, 'Video Result Click')} />
             </a>
             <div class="vid-card-body p-3">
-          <a href="#" title="Link to ${hit.name}" data-toggle="modal" data-target="#modal-${hit.objectID}" class="stretched-link">
+          <a href="#" title="Link to ${hit.name}" data-toggle="modal" data-target="#modal-${hit.objectID}" class="stretched-link" ${bindEvent('click', hit, 'Video Result Click')}>
             <h4 class="hit-name" ${bindEvent('click', hit, 'Video Result Click')}>${instantsearch.highlight({ attribute: 'name', hit })}</a></h4>
             <small><em><ul class="list-inline">
               ${hit.speakers.map(speaker => {
