@@ -1,13 +1,14 @@
-
 const searchClient = algoliasearch('JINA8T7GLB', 'cccd3ff2b3aaa504c5028daee311d2ea');
 
 const searchTalks = instantsearch({
   indexName: 'TEDTalks_talks',
   searchClient,
-  routing: true
+  routing: true,
+  insightsClient: window.aa,
+  insightsInitParams: {
+    useCookie: true,
+  }
 });
-
-
 
 searchTalks.addWidgets([
   instantsearch.widgets.searchBox({
@@ -162,65 +163,69 @@ searchTalks.addWidgets([
       disabledLoadMore: 'btn btn-lg btn-outline-custom btn-disabled'
     },
     templates: {
-      item: `
+      item(hit, bindEvent) {
+        return `
         <div class="vid-card h-100">
           <div class="vid-card-wrap">
           <div class="vid-card-img-top">
-            <a href="#" title="Link to {{name}}" data-toggle="modal" data-target="#modal-{{objectID}}">
-              <img src="{{image_url}}" alt="{{name}} Video Thumbnail" class="img-fluid" />
+            <a href="#" title="Link to ${hit.name}" data-toggle="modal" data-target="#modal-${hit.objectID}" ${bindEvent('click', hit, 'Video Result Click')}>
+              <img src="${hit.image_url}" alt="${hit.name} Video Thumbnail" class="img-fluid" ${bindEvent('click', hit, 'Video Result Click')} />
             </a>
             <div class="vid-card-body p-3">
-          <a href="#" title="Link to {{name}}" data-toggle="modal" data-target="#modal-{{objectID}}" class="stretched-link">
-            <h4 class="hit-name">{{#helpers.highlight}}{"attribute" : "name"}{{/helpers.highlight}}</a></h4>
+          <a href="#" title="Link to ${hit.name}" data-toggle="modal" data-target="#modal-${hit.objectID}" class="stretched-link">
+            <h4 class="hit-name" ${bindEvent('click', hit, 'Video Result Click')}>${instantsearch.highlight({ attribute: 'name', hit })}</a></h4>
             <small><em><ul class="list-inline">
-              {{#speakers}}
-                <li class="list-inline-item">{{.}}</li>
-              {{/speakers}}
+              ${hit.speakers.map(speaker => {
+          return `<li class="list-inline-item">${speaker}</li>`
+        }).join('')}
              </ul></em></small>
-         <small>Posted: {{date}}</small>
+         <small>Posted: ${hit.date}</small>
             </div>
           </div>
           
           </div>
           </div>
         </div>
-        <div class="modal fade" id="modal-{{objectID}}" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true" data-slug="{{slug}}">
+        <div class="modal fade" id="modal-${hit.objectID}" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true" data-slug="${hit.slug}">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalLabel">{{#helpers.highlight}}{"attribute" : "name"}{{/helpers.highlight}} </h5>
+        <h5 class="modal-title" id="ModalLabel">${instantsearch.highlight({ attribute: 'name', hit })}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
       <div class="row pb-3">
-        <div class="col-sm-6 align-self-center"><div class="video-wrap"><a href="https://www.ted.com/talks/{{slug}}"><div class="play-btn"></div><img src="{{image_url}}" alt="{{name}} Video Thumbnail" class="img-fluid" /></a></div></div>
+        <div class="col-sm-6 align-self-center"><div class="video-wrap"><a href="https://www.ted.com/talks/${hit.slug}" ${bindEvent('conversion', hit, 'Video Played')}><div class="play-btn" ${bindEvent('conversion', hit, 'Video Played')}></div><img src="${hit.image_url}" alt="${hit.name} Video Thumbnail" class="img-fluid" ${bindEvent('conversion', hit, 'Video Played')} /></a></div></div>
         <div class="col-sm-6">
-      <p class="hit-description">{{#helpers.highlight}}{"attribute" : "description"}{{/helpers.highlight}}</p>
+      <p class="hit-description">${instantsearch.highlight({ attribute: 'description', hit })}</p>
       <p class="text-muted">Presented by: 
       <ul class="list-unstyled">
-      {{#speakers}}
-        <li><a href="?TEDTalks_talks%5BrefinementList%5D%5Bspeakers%5D%5B0%5D={{.}}" title="More by this speaker">{{.}}</a></li>
-      {{/speakers}}
+      ${hit.speakers.map(speaker => {
+          return `
+        <li><a href="?TEDTalks_talks%5BrefinementList%5D%5Bspeakers%5D%5B0%5D=${speaker}" title="More by this speaker">${speaker}</a></li>
+      `}).join('')}
       </ul></p>
-      <p class="text-muted">Event: <a href="?TEDTalks_talks%5BrefinementList%5D%5Bspeakers%5D%5B0%5D={{event_name}}">{{event_name}}</a></p>
-      <small>Views: {{viewed_count}}</small>
+      <p class="text-muted">Event: <a href="?TEDTalks_talks%5BrefinementList%5D%5Bspeakers%5D%5B0%5D=${hit.event_name}">${hit.event_name}</a></p>
+      <small>Views: ${hit.viewed_count}</small>
       <div class="tag-wrapper">
-      {{#tags}}
-        <a href="?TEDTalks_talks%5BrefinementList%5D%5Btags%5D%5B0%5D={{.}}" class="tag badge badge-pill badge-secondary">{{.}}</a>
-      {{/tags}}
+      ${hit.tags.map(tag => {
+            return `
+      <a href="?TEDTalks_talks%5BrefinementList%5D%5Btags%5D%5B0%5D=${tag}" class="tag badge badge-pill badge-secondary">${tag}</a>
+      `}).join('')}
       </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Close</button>
-        <a href="https://www.ted.com/talks/{{slug}}" role="button" class="btn btn-custom btn-sm">Watch this Talk</a>
+        <a href="https://www.ted.com/talks/${hit.slug}" role="button" class="btn btn-custom btn-sm" ${bindEvent('conversion', hit, 'Video Played')}>Watch this Talk</a>
       </div>
     </div>
   </div>
 </div>
       `
+      }
     },
     transformItems(items) {
       const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

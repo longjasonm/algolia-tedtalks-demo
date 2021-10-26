@@ -20,8 +20,8 @@
   "homepage": "https://github.com/longjasonm/algolia-tedtalks-demo#readme",
   "dependencies": {
     "algoliasearch": "^4.5.1",
-    "instantsearch.js": "^4.8.1",
-    "search-insights": "^1.6.3",
-    "parcel": "^1.12.4"
+    "instantsearch.js": "^4.32.0",
+    "parcel": "^1.12.4",
+    "search-insights": "^1.6.3"
   }
 }
