@@ -1,11 +1,3 @@
-
-
-
-aa('init', {
-  appId: 'JINA8T7GLB',
-  apiKey: 'cccd3ff2b3aaa504c5028daee311d2ea',
-});
-
 // Since search-insights@2.0.0, cookie is not used for anonymous user token.
 // If you wish to continue, you can pass `useCookie: true`.
 aa('init', {
@@ -14,6 +6,9 @@ aa('init', {
   useCookie: true,
 })
 
+const insightsMiddleware = instantsearch.middlewares.createInsightsMiddleware({
+  insightsClient: window.aa,
+})
 
 const searchClient = algoliasearch('JINA8T7GLB', 'cccd3ff2b3aaa504c5028daee311d2ea');
 
