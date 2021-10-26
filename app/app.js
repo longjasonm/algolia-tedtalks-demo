@@ -1,13 +1,14 @@
 // Since search-insights@2.0.0, cookie is not used for anonymous user token.
 // If you wish to continue, you can pass `useCookie: true`.
+
+const insightsMiddleware = instantsearch.middlewares.createInsightsMiddleware({
+  insightsClient: window.aa,
+});
+
 aa('init', {
   appId: 'JINA8T7GLB',
   apiKey: 'cccd3ff2b3aaa504c5028daee311d2ea',
   useCookie: true,
-})
-
-const insightsMiddleware = instantsearch.middlewares.createInsightsMiddleware({
-  insightsClient: window.aa,
 })
 
 const searchClient = algoliasearch('JINA8T7GLB', 'cccd3ff2b3aaa504c5028daee311d2ea');
@@ -17,6 +18,8 @@ const searchTalks = instantsearch({
   searchClient,
   routing: true,
 });
+
+searchTalks.use(insightsMiddleware)
 
 searchTalks.addWidgets([
   instantsearch.widgets.searchBox({
@@ -31,7 +34,7 @@ searchTalks.addWidgets([
   }),
 
   instantsearch.widgets.configure({
-    hitsPerPage: 24,
+    hitsPerPage: 20,
     enablePersonalization: true,
     clickAnalytics: true
   }),
