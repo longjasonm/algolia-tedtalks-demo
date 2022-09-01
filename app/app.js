@@ -13,9 +13,7 @@ aa('init', {
 
 const searchClient = algoliasearch('JINA8T7GLB', 'cccd3ff2b3aaa504c5028daee311d2ea');
 
-const algoliarecommend = require('@algolia/recommend');
-
-const recommendClient = algoliarecommend('JINA8T7GLB', 'cccd3ff2b3aaa504c5028daee311d2ea');
+const recommendClient = recommend('JINA8T7GLB', 'cccd3ff2b3aaa504c5028daee311d2ea');
 
 const searchTalks = instantsearch({
   indexName: 'TEDTalks_talks',
