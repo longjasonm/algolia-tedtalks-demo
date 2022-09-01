@@ -11,81 +11,97 @@ body {
   border: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
+
 .ais-InfiniteHits-item .vid-card,
 .ais-InfiniteHits-item .card {
   transition: transform 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
   transform-origin: center center;
 }
+
 .ais-InfiniteHits-item .vid-card:hover,
 .ais-InfiniteHits-item .card:hover {
   -webkit-transform: scale3d(1.02, 1.02, 1.02);
   transform: scale3d(1.02);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
 .card-header {
   padding: 0.25rem 0.5rem;
   background: #fff;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(232, 232, 232, 1) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(232, 232, 232, 1) 100%);
   border: none;
   border-bottom: 1px solid #c62f24;
 }
+
 .card-header .btn-link {
   color: #333;
   font-weight: 700;
 }
+
 .card h4 a {
   color: #000;
   text-decoration: none;
   font-size: 1.2rem;
   line-height: 1 !important;
 }
+
 h4 {
   line-height: 1;
 }
+
 .btn.disabled,
 .btn:disabled {
   display: none;
   cursor: no-drop;
 }
+
 .form-control {
   border-radius: 0;
 }
+
 header {
   background: #fff;
   border-bottom: 1px solid #ccc;
 }
+
 header h1 {
   font-weight: 100;
   font-size: 3rem;
 }
+
 input.ais-SearchBox-input.form-control:focus {
   outline: none !important;
   border: 1px solid #c62f24;
   box-shadow: 0 0 10px #c62f24;
 }
+
 span.ais-RefinementList-labelText,
 span.tag {
   text-transform: capitalize;
 }
+
 .ais-InfiniteHits-itemp {
   font-size: 0.8rem;
 }
+
 .card-header .btn.collapsed:after {
   content: " +";
 }
+
 .card-header .btn:after {
   content: " -";
 }
+
 .modal-header {
   padding: 0.5rem 1rem;
 }
+
 .modal-footer {
   padding: 0.5rem 0rem 0rem;
 }
+
 .modal-backdrop.show {
   opacity: 0.8;
 }
@@ -94,29 +110,35 @@ span.tag {
   color: #c62f24;
   border-color: #c62f24;
 }
+
 .btn-outline-custom:hover {
   color: #fff;
   background-color: #c62f24;
   border-color: #c62f24;
 }
+
 .btn-custom {
   color: #fff;
   background-color: #c62f24;
   border-color: #c62f24;
 }
+
 .btn-custom:hover {
   color: #fff;
   background-color: #f00;
   border-color: #f00;
 }
+
 a {
   color: #c62f24;
 }
+
 a:hover {
   color: #62120d;
 }
+
 .nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
+.nav-pills .show>.nav-link {
   color: #fff;
   background: #c62f24;
 }
@@ -128,6 +150,10 @@ a:hover {
   }
 }
 
+.video-wrap {
+  position: relative;
+}
+
 .video-wrap .play-btn {
   position: absolute;
   max-width: 700px;
@@ -136,19 +162,22 @@ a:hover {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  line-height: 1; /* needed if using Bootstrap */
+  line-height: 1;
+  /* needed if using Bootstrap */
   text-align: center;
   color: #eaeaea;
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 50px;
   transition: color, background-color 0.2s ease;
 }
+
 .video-wrap .play-btn:hover,
 .video-wrap .play-btn:focus {
   color: #000;
   background-color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
 }
+
 .play-btn::after {
   /*
   Font Awesome recommends these styles
@@ -191,11 +220,9 @@ a:hover {
 .vid-card-body {
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.1) 0%,
-    rgba(0, 0, 0, 1) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 1) 100%);
   position: absolute;
   width: 100%;
 }

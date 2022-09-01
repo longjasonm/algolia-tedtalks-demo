@@ -13,6 +13,10 @@ aa('init', {
 
 const searchClient = algoliasearch('JINA8T7GLB', 'cccd3ff2b3aaa504c5028daee311d2ea');
 
+const algoliarecommend = require('@algolia/recommend');
+
+const recommendClient = algoliarecommend('JINA8T7GLB', 'cccd3ff2b3aaa504c5028daee311d2ea');
+
 const searchTalks = instantsearch({
   indexName: 'TEDTalks_talks',
   searchClient,
@@ -175,6 +179,30 @@ searchTalks.addWidgets([
     },
     templates: {
       item(hit, bindEvent) {
+
+        hit.getRecommendations = function (videoID) {
+          document.addEventListener('click', e => {
+            if (e.target.closest(`a[data-target="#modal-${videoID}"]`)) {
+              recommendClient.getRelatedProducts([
+                {
+                  indexName: 'TEDTalks_talks',
+                  objectID: videoID,
+                  maxRecommendations: 3
+                },
+              ])
+                .then(({ results }) => {
+                  const container = document.getElementById(`recommendations-${videoID}`);
+                  container.innerHTML = `<div class="row">${results[0].hits.map(hit => `<div class="col"><a href="https://www.ted.com/talks/${hit.slug}" target="_blank"><img src="${hit.image_url}" class="img-fluid" alt="${hit.name}"></a>
+                  <h6><a href="https://www.ted.com/talks/${hit.slug}" target="_blank">${hit.name}</a></div>`).join('')}</div>`;
+                  console.log(results)
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+            }
+          });
+        }
+
         return `
         <div class="vid-card h-100">
           <div class="vid-card-wrap">
@@ -208,7 +236,11 @@ searchTalks.addWidgets([
       </div>
       <div class="modal-body">
       <div class="row pb-3">
-        <div class="col-sm-6 align-self-center"><div class="video-wrap"><a href="https://www.ted.com/talks/${hit.slug}" ${bindEvent('conversion', hit, 'Video Played')}><div class="play-btn" ${bindEvent('conversion', hit, 'Video Played')}></div><img src="${hit.image_url}" alt="${hit.name} Video Thumbnail" class="img-fluid" ${bindEvent('conversion', hit, 'Video Played')} /></a></div></div>
+        <div class="col-sm-6 align-self-center"><div class="video-wrap"><a href="https://www.ted.com/talks/${hit.slug}" ${bindEvent('conversion', hit, 'Video Played')}><div class="play-btn" ${bindEvent('conversion', hit, 'Video Played')}></div><img src="${hit.image_url}" alt="${hit.name} Video Thumbnail" class="img-fluid" ${bindEvent('conversion', hit, 'Video Played')} /></a></div>
+  
+        <h5 class="mt-3">Related Talks:</h5>
+        <div id="recommendations-${hit.objectID}"></div>
+        </div>
         <div class="col-sm-6">
       <p class="hit-description">${instantsearch.highlight({ attribute: 'description', hit })}</p>
       <p class="text-muted">Presented by: 
@@ -226,15 +258,17 @@ searchTalks.addWidgets([
       <a href="?TEDTalks_talks%5BrefinementList%5D%5Btags%5D%5B0%5D=${tag}" class="tag badge badge-pill badge-secondary">${tag}</a>
       `}).join('')}
       </div>
-        </div>
+      </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Close</button>
         <a href="https://www.ted.com/talks/${hit.slug}" role="button" class="btn btn-custom btn-sm" ${bindEvent('conversion', hit, 'Video Played')}>Watch this Talk</a>
+        
       </div>
     </div>
   </div>
 </div>
+${hit.getRecommendations(hit.objectID)}
       `
       }
     },
